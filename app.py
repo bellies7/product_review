@@ -311,7 +311,7 @@ def filter_yt_comments(openai_client, comments, product_model, product_category,
     relevant = []
     for i in range(0, len(comments), batch_size):
         batch = comments[i:i+batch_size]
-        numbered = "\n".join([f"{j+1}. {c['text'][:300]}" for j, c in enumerate(batch)])
+        numbered = "\n".join([f"{j+1}. {c[:300]}" for j, c in enumerate(batch)])
         prompt = f"""You are filtering YouTube comments for a product analysis of the {product_model} ({product_category}).
 
 Keep a comment ONLY if it:
@@ -335,7 +335,7 @@ Comments:
             indices = json.loads(raw)
             for idx in indices:
                 if 1 <= idx <= len(batch):
-                    relevant.append(batch[idx-1]['text'])
+                    relevant.append(batch[idx-1])
         except Exception:
             pass
     return relevant
