@@ -686,7 +686,7 @@ def generate_final_report(openai_client, product_model, product_category,
 
     pros_block = "\n".join([f"{i+1}. {p['title']} (~{p.get('frequency_estimate','?')} mentions): {p['description']}" for i, p in enumerate(pros)])
     cons_block = "\n".join([f"{i+1}. {c['title']} (~{c.get('frequency_estimate','?')} mentions): {c['description']}" for i, c in enumerate(cons)])
-    comp_block = "\n".join([f"- {n} (freq: {d['frequency']}x): lacks {competitor_gaps.get(n,{}).get('features_we_lack',[])} vs us" for n,d in dict(top_competitors).items()])
+    comp_block = "\n".join([f"- {n} (freq: {d['frequency']}x): lacks {', '.join(competitor_gaps.get(n, {}).get('features_we_lack', []))} vs us" for n, d in top_competitors])
     opps_block = "\n".join([f"{i+1}. {o.get('title')}: {o.get('specific_change')} [Interest {o.get('interest_score')}/10, Effort {o.get('effort_score')}/10]" for i, o in enumerate(design_opportunities)])
 
     prompt = f"""Write a professional product design analysis report for the {product_model} ({product_category}).
