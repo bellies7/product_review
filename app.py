@@ -38,7 +38,7 @@ html, body, [class*="css"] {
 }
 
 /* Hide Streamlit default elements */
-#MainMenu, footer, header { visibility: hidden; }
+#MainMenu, footer { visibility: hidden; }
 .stDeployButton { display: none; }
 
 /* Title */
